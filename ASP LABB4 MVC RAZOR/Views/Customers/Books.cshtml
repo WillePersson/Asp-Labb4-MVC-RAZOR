@@ -1,0 +1,30 @@
+﻿@model IEnumerable<BookLoanViewModel>
+
+<h2>Books Borrowed by @ViewBag.CustomerName</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Loan Date</th>
+            <th>Return Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.LoanDate.ToString("d")</td>
+                <td>@book.ReturnDate?.ToString("d")</td>
+                <td>@(book.IsReturned ? "Returned" : "Out")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index">Back to Customers</a>
+

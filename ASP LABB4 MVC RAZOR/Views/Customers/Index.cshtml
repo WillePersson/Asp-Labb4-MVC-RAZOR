@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ASP_LABB4_MVC_RAZOR.Models.Customer>
+
+<h2>Customers</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Name</td>
+                <td>@customer.Email</td>
+                <td>@customer.PhoneNumber</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@customer.UserId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@customer.UserId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@customer.UserId">Delete</a> |
+                    <a asp-action="Books" asp-route-id="@customer.UserId">Books</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create">Add New Customer</a>
