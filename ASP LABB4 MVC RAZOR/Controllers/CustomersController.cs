@@ -19,6 +19,20 @@ public class CustomersController : Controller
         return View(customers);
     }
 
+    public IActionResult SearchByName(string searchString)
+    {
+        var customers = from m in _context.Customers
+                        select m;
+
+        if (!String.IsNullOrEmpty(searchString))
+        {
+            customers = customers.Where(s => s.Name.Contains(searchString));
+        }
+
+        return View("Index", customers.ToList());
+    }
+
+
     public IActionResult Books(int id)
     {
         var booksWithLoans = _context.Loans
